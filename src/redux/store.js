@@ -3,6 +3,7 @@ import { configureStore} from '@reduxjs/toolkit';
 // import { rootReducer } from './reducers';
 // import {contactsReducer, filterReducer} from './reducers';
 import { contactsReducer } from './contactsSlice';
+import { userReducer } from './userSlice';
 import { filterReducer } from './filterSlice';
 // import {
 //   persistStore,
@@ -29,6 +30,7 @@ import { filterReducer } from './filterSlice';
 
 const store=configureStore({
     reducer: {
+        user:userReducer,
         contacts:contactsReducer,
         filter:filterReducer,
     },
