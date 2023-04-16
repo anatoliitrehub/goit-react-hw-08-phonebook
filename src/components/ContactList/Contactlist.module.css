@@ -1,0 +1,34 @@
+.listItem{
+    list-style: none;
+    /* width:50%; */
+    border-radius: 5px;
+    border:1px solid #333333;
+    padding: 10px;
+    margin: 10px;
+}
+
+.userName{
+    font-size: 30px;
+    font-weight: 600;
+    color:#008800
+}
+
+.userNumber{
+    font-size: 28px;
+
+}
+
+.btn{
+    font-size: 26px;
+    padding: 5px;
+    margin: 10px 20px;
+    background-color: #aaaaee;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #222222;
+} 
+
+.btn:hover{
+    transform: scale(1.2);
+    box-shadow: 7px 7px 15px #222222;
+
+}
