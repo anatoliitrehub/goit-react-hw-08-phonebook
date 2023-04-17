@@ -7,11 +7,11 @@ import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operations';
 
 const ContactPage = () => {
-  const { error } = useSelector(state => state.user);
+  const { error,token } = useSelector(state => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    dispatch(fetchContacts(token));
+  }, [dispatch,token]);
 
   return (
     <>

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import UserMenu from './UserMenu/UserMenu';
 import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
 // import { lazy, Suspense } from 'react';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { initToken } from 'redux/operations';
 import { LoginForm } from '../pages/LoginRegForms/LoginForm';
 import { RegisterForm } from 'pages/LoginRegForms/RegisterForm';
@@ -35,9 +35,9 @@ export const App = () => {
   const { token } = useSelector(state => state.user);
   const isAuth = Boolean(token);
 
-  useEffect(()=>{
+  // useEffect(()=>{
     initToken(token);
-  },[token])
+  // },[])
   // console.log(isAuth);
 
   // const LoginForm = lazy(() => import('../pages/LoginRegForms/LoginForm'));
