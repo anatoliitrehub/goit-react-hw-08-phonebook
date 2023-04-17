@@ -8,13 +8,13 @@ const userSlice = createSlice({
   name: 'user',
   initialState: {
         user:{
-            name:'',
+            name:'Noname',
             email:'Guest',
             password:'',
             
         },
     token:'',
-    isLoading:false,
+    // isLoading:false,
     error:null},
   
   extraReducers:b=>b
@@ -22,21 +22,21 @@ const userSlice = createSlice({
   //   state.isLoading=true
   // })
    .addCase(registerUser.fulfilled, (state, { payload }) => {
-    //   state.isLoading = false;
-      state.isLoading = true;
+      // state.isLoading = false;
+      // state.user.isLoading = true;
       state.user = payload;
    state.error=null;
   })
   .addCase(loginUser.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
+      // state.isLoading = false;
       state.user = payload.user;
-      state.token = payload.token
+      // state.token = payload.token
    state.error=null;
   })
   .addCase(logoutUser.fulfilled, (state, { payload }) => {
     console.log(payload)
-      state.isLoading = false;
-    //   state.user = '';
+      // state.isLoading = false;
+      state.user.email = 'Guest';
     //   state.token = payload.token
    state.error=null;
   })
@@ -54,8 +54,14 @@ const userSlice = createSlice({
 //     state.isLoading=true;
 //   })
   .addMatcher((action)=>action.type.endsWith("rejected"),(state,{payload})=>{
-    state.isLoading=false;
+    // state.isLoading=false;
     state.error=payload;
+    state.user.name='';
+  })
+  .addMatcher((action)=>action.type.endsWith("pending"),(state)=>{
+    // state.isLoading=true;
+    // state.error=payload;
+    // state.user.name='';
   })
 }
 );

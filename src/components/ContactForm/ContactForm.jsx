@@ -5,73 +5,82 @@ import { addContact } from 'redux/operations';
 // import { addUser } from 'redux/contactsSlice';
 import PropTypes from 'prop-types';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
+import { green } from '@mui/material/colors';
+import Icon from '@mui/material/Icon';
+import { Button } from '@mui/material';
 
 export const ContactForm = () => {
- const dispatch = useDispatch();
- const {items,isLoading, error} = useSelector(state=>state.contacts)
+  const dispatch = useDispatch();
+  const { items, isLoading, error } = useSelector(state => state.contacts);
 
-  const [name,setName] = useState('')
-  const [phone,setPhone] = useState('')
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
 
   const handleAddUser = e => {
     e.preventDefault();
-    if (items.find(el => el.name.toLowerCase() === name.toLowerCase())||
-    items.find(el => el.phone === phone)) {
+    if (
+      items.find(el => el.name.toLowerCase() === name.toLowerCase()) ||
+      items.find(el => el.phone === phone)
+    ) {
       Notify.failure(`${name} or ${phone} is already in contacts`);
       return;
     }
-    // addUser({name,number});
-    dispatch(addContact({name,phone}));
-    !error&&!isLoading&&
-    Notify.success(`Contact ${name} has been added`);
-    if(error){
+    dispatch(addContact({ name, phone }));
+    !error && !isLoading && Notify.success(`Contact ${name} has been added`);
+    if (error) {
       Notify.failure(`${error}!`);
-      return;};
+      return;
+    }
 
-    e.target.reset()
+    // e.target.reset();
     setName('');
-    setPhone('')
+    setPhone('');
   };
 
-  
-    return (
-      <form action="#" onSubmit={handleAddUser} className={st.form}>
-        <label htmlFor="" className={st.labelName}>
-          Name
-          <input
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            className={st.name}
-            value={name}
-            onChange={e=>setName(e.target.value)}
-            required
-          />
-        </label>
-        <label htmlFor="" className={st.labelNumber}>
-          Number
-          <input
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            className={st.number}
-            value={phone}
-            onChange={e=>setPhone(e.target.value)}
-            required
-          />
-        </label>
-        <button className={st.addContact}>Add contact</button>
-      </form>
-    );
-  }
+  return (
+    <form action="#" onSubmit={handleAddUser} className={st.form}>
+      <label htmlFor="" className={st.labelName}>
+        Name
+        <input
+          type="text"
+          name="name"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          className={st.name}
+          value={name}
+          onChange={e => setName(e.target.value)}
+          required
+        />
+      </label>
+      <label htmlFor="" className={st.labelNumber}>
+        Number
+        <input
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          className={st.number}
+          value={phone}
+          onChange={e => setPhone(e.target.value)}
+          required
+        />
+      </label>
+      <Button
+        variant="contained"
+        onClick={handleAddUser}
+        startIcon={<Icon sx={{ color: green[500] }}></Icon>}
+      >
+        Add contact
+      </Button>
+      {/* <button className={st.addContact}>Add contact</button> */}
+    </form>
+  );
+};
 
 ContactForm.propTypes = {
   items: PropTypes.array,
-  error:PropTypes.string,
-  isLoading:PropTypes.bool,
-    filter: PropTypes.string,
-    addContact: PropTypes.func,
-}
+  error: PropTypes.string,
+  isLoading: PropTypes.bool,
+  filter: PropTypes.string,
+  addContact: PropTypes.func,
+};

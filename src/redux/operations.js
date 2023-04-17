@@ -42,7 +42,7 @@ export const loginUser = createAsyncThunk("user/login", async (user,thunkAPI)=>{
     }
 })
 
-export const logoutUser = createAsyncThunk("user/logout", async (token,thunkAPI)=>{
+export const logoutUser = createAsyncThunk("user/logout", async (_,thunkAPI)=>{
     try{
         const resp = await axios.post("/users/logout");
         token.unset();
@@ -52,7 +52,7 @@ export const logoutUser = createAsyncThunk("user/logout", async (token,thunkAPI)
     }
 })
 
-export const fetchAll = createAsyncThunk("contacts/fetchAll", async (_,thunkAPI)=>{
+export const fetchContacts = createAsyncThunk("contacts/fetchContacts", async (_,thunkAPI)=>{
     try{
     const resp = await axios.get("/contacts");
     return resp.data;
@@ -62,9 +62,14 @@ export const fetchAll = createAsyncThunk("contacts/fetchAll", async (_,thunkAPI)
     }
 })
 
-export const addContact = createAsyncThunk("contacts/addContact", async (user,thunkAPI)=>{
+export const addContact = createAsyncThunk("contacts/addContact", async ({name,phone:number},thunkAPI)=>{
     try{
-        const resp = await axios.post("/contacts", user);
+        const resp = await axios.post("/contacts", {name,number},{
+            headers: {
+                'Content-Type': 'application/json'
+              }
+        });
+        
         return resp.data
     } catch (e){
         return thunkAPI.rejectWithValue(e.message)
@@ -73,7 +78,11 @@ export const addContact = createAsyncThunk("contacts/addContact", async (user,th
 
 export const deleteContact = createAsyncThunk("contacts/deleteContact", async (id,thunkAPI)=>{
     try{
-        const resp = await axios.delete(`/contacts/${id}`).then(()=>id);
+        const resp = await axios.delete(`/contacts/${id}`,{
+            headers:{
+            contactId:id,
+            }
+        }).then(()=>id);
         return resp
     } catch (e){
         return thunkAPI.rejectWithValue(e.message)
