@@ -8,7 +8,7 @@ const UserMenu = () => {
   const { email } = useSelector(state => state.user.user);
   const isAuth = Boolean(email !== 'Guest');
   // const {token} = useSelector(state=>state.user)
-  console.log(email);
+//   console.log(email);
   return (
     <>
     <div className={st.wrapper}>

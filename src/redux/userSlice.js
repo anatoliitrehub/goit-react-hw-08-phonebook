@@ -34,7 +34,6 @@ const userSlice = createSlice({
    state.error=null;
   })
   .addCase(logoutUser.fulfilled, (state, { payload }) => {
-    console.log(payload)
       // state.isLoading = false;
       state.user.email = 'Guest';
     //   state.token = payload.token

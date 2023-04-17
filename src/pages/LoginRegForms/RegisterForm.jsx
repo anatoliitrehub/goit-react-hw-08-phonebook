@@ -15,12 +15,12 @@ export const RegisterForm = () => {
   const { error, isLoading } = useSelector(state => state.user);
   //  const {error,isLoading} = useSelector(state=>state)
 
-  console.log('error,isloading', error, isLoading);
+  // console.log('error,isloading', error, isLoading);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  console.log(name, email, password);
+  // console.log(name, email, password);
 
   const handleRegisterUser = e => {
     e.preventDefault();

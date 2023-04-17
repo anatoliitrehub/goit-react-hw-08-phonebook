@@ -29,7 +29,6 @@ export const App = () => {
   // const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.contacts);
   const { email } = useSelector(state => state.user.user);
-  console.log('isLoading', isLoading);
   const isAuth = Boolean(email !== 'Guest');
   // console.log(isAuth);
 

@@ -15,7 +15,7 @@ export const LoginForm = () => {
   const { error, isLoading } = useSelector(state => state.user);
   //  const {error,isLoading} = useSelector(state=>state)
 
-  console.log('error,isloading', error, isLoading);
+  // console.log('error,isloading', error, isLoading);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
