@@ -46,6 +46,7 @@ export const App = () => {
 
   return (
     <>
+    <header>
       <nav className={st.nav}>
         <UserMenu />
         {!isAuth && (
@@ -64,6 +65,7 @@ export const App = () => {
         )}
         {isLoading && <LinearProgress color="success" />}
       </nav>
+      </header>
       <main className={st.main}>
         {isAuth ? (
           <Routes>

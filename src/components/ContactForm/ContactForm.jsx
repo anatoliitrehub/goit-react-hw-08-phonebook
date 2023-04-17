@@ -5,9 +5,9 @@ import { addContact } from 'redux/operations';
 // import { addUser } from 'redux/contactsSlice';
 import PropTypes from 'prop-types';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { green } from '@mui/material/colors';
-import Icon from '@mui/material/Icon';
-import { Button } from '@mui/material';
+// import { green } from '@mui/material/colors';
+// import Icon from '@mui/material/Icon';
+// import { Button } from '@mui/material';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -65,14 +65,14 @@ export const ContactForm = () => {
           required
         />
       </label>
-      <Button
+      {/* <Button
         variant="contained"
         onClick={handleAddUser}
         startIcon={<Icon sx={{ color: green[500] }}></Icon>}
       >
         Add contact
-      </Button>
-      {/* <button className={st.addContact}>Add contact</button> */}
+      </Button> */}
+      <button className={st.addContact}>Add contact</button>
     </form>
   );
 };

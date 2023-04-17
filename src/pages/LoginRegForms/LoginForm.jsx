@@ -5,9 +5,9 @@ import { loginUser } from 'redux/operations';
 // import { addUser } from 'redux/contactsSlice';
 import PropTypes from 'prop-types';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { green } from '@mui/material/colors';
-import Icon from '@mui/material/Icon';
-import { Button } from '@mui/material';
+// import { green } from '@mui/material/colors';
+// import Icon from '@mui/material/Icon';
+// import { Button } from '@mui/material';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -65,14 +65,14 @@ export const LoginForm = () => {
             required
           />
         </label>
-
-        <Button
+        <button className={st.addContact}>Login</button>
+        {/* <Button
           variant="contained"
           onClick={handleLoginUser}
           startIcon={<Icon sx={{ color: green[500] }}></Icon>}
         >
           Login
-        </Button>
+        </Button> */}
       </form>
     </>
   );
