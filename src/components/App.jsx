@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import UserMenu from './UserMenu/UserMenu';
 import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
 // import { lazy, Suspense } from 'react';
+import { useEffect } from 'react';
+import { initToken } from 'redux/operations';
 import { LoginForm } from '../pages/LoginRegForms/LoginForm';
 import { RegisterForm } from 'pages/LoginRegForms/RegisterForm';
 import ContactPage from 'pages/ContactsPage/ContactsPage';
@@ -10,6 +12,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
 import LinearProgress from '@mui/material/LinearProgress';
+
 
 // const SharedLayout = () => {
 //   return (
@@ -26,10 +29,14 @@ import LinearProgress from '@mui/material/LinearProgress';
 // };
 
 export const App = () => {
-  // const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.contacts);
   const { email } = useSelector(state => state.user.user);
+  const { token } = useSelector(state => state.user);
   const isAuth = Boolean(email !== 'Guest');
+
+  useEffect(()=>{
+    initToken(token);
+  },[token])
   // console.log(isAuth);
 
   // const LoginForm = lazy(() => import('../pages/LoginRegForms/LoginForm'));

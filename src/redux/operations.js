@@ -12,7 +12,13 @@ const token = {
     }
 }
 
+// token.set("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNjNjI0OWVlOGI3OTAwMTQ2NGM0NzQiLCJpYXQiOjE2ODE3NTcwNjZ9.XgFNqMbsgs3bctTa29qg6e7W9HE_oGAhBqY54R7GjPQ")
+
 ///users/signup
+
+export const initToken = (currentToken) => {
+    token.set(currentToken);
+}
 
 export const registerUser = createAsyncThunk("user/register", async (user,thunkAPI)=>{
     try{
@@ -48,6 +54,22 @@ export const logoutUser = createAsyncThunk("user/logout", async (_,thunkAPI)=>{
         token.unset();
         return resp.data
     } catch (e){
+        return thunkAPI.rejectWithValue(e.message)
+    }
+})
+
+export const reLoginUser = createAsyncThunk("user/reLogin", async (currentToken,thunkAPI)=>{
+    try{
+    const resp = await axios.get("/users/current",{
+        headers:{
+            Authorization: `Bearer ${currentToken}`
+        }
+    });
+    console.log(currentToken)
+    token.set(currentToken)
+    return resp.data;
+    }
+    catch(e){
         return thunkAPI.rejectWithValue(e.message)
     }
 })

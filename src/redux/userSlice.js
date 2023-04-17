@@ -30,13 +30,13 @@ const userSlice = createSlice({
   .addCase(loginUser.fulfilled, (state, { payload }) => {
       // state.isLoading = false;
       state.user = payload.user;
-      // state.token = payload.token
+      state.token = payload.token
    state.error=null;
   })
   .addCase(logoutUser.fulfilled, (state, { payload }) => {
       // state.isLoading = false;
       state.user.email = 'Guest';
-    //   state.token = payload.token
+      state.token = '';
    state.error=null;
   })
   
