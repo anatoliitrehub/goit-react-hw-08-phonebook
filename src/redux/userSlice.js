@@ -33,25 +33,20 @@ const userSlice = createSlice({
       state.token = payload.token
    state.error=null;
   })
-  .addCase(logoutUser.fulfilled, (state, { payload }) => {
+  .addCase(logoutUser.fulfilled, (state) => {
       // state.isLoading = false;
       state.user.email = 'Guest';
       state.token = '';
    state.error=null;
   })
+  .addCase(logoutUser.rejected, (state,{payload}) => {
+    // state.isLoading = false;
+    state.user.email = 'Guest';
+    state.token = '';
+ state.error=payload;
+})
   
   
-//   .addCase(fetchAll.fulfilled,(state,{payload})=>{
-//     state.isLoading=false;
-//     state.items = payload
-//   })
-//   .addCase(deleteContact.fulfilled,(state,{payload})=>{
-//     state.isLoading=false;
-//     state.items=state.items.filter(el=>el.id!==payload)
-//   })
-//   .addMatcher((action)=>action.type.endsWith("pending"),(state)=>{
-//     state.isLoading=true;
-//   })
   .addMatcher((action)=>action.type.endsWith("rejected"),(state,{payload})=>{
     // state.isLoading=false;
     state.error=payload;

@@ -6,9 +6,9 @@ import Button from '@mui/material/Button';
 const UserMenu = () => {
   const dispatch = useDispatch();
   const { email } = useSelector(state => state.user.user);
-  const isAuth = Boolean(email !== 'Guest');
+  const { token } = useSelector(state => state.user);
+  const isAuth = Boolean(token);
   // const {token} = useSelector(state=>state.user)
-//   console.log(email);
 
 
   return (

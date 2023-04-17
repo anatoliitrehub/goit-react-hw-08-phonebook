@@ -32,7 +32,7 @@ export const App = () => {
   const { isLoading } = useSelector(state => state.contacts);
   const { email } = useSelector(state => state.user.user);
   const { token } = useSelector(state => state.user);
-  const isAuth = Boolean(email !== 'Guest');
+  const isAuth = Boolean(token);
 
   useEffect(()=>{
     initToken(token);
