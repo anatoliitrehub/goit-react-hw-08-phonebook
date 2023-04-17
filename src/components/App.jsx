@@ -29,8 +29,9 @@ import LinearProgress from '@mui/material/LinearProgress';
 // };
 
 export const App = () => {
+  const domenPath = "/goit-react-hw-08-phonebook";
   const { isLoading } = useSelector(state => state.contacts);
-  const { email } = useSelector(state => state.user.user);
+  // const { email } = useSelector(state => state.user.user);
   const { token } = useSelector(state => state.user);
   const isAuth = Boolean(token);
 
@@ -53,10 +54,10 @@ export const App = () => {
             aria-label="outlined primary button group"
             className={st.buttons}
           >
-            <NavLink to="/login">
+            <NavLink to={`${domenPath}/login`}>
               <Button>Login</Button>
             </NavLink>
-            <NavLink to="/register">
+            <NavLink to={`${domenPath}/register`}>
               <Button>Register</Button>
             </NavLink>
           </ButtonGroup>
@@ -68,20 +69,20 @@ export const App = () => {
           <Routes>
             {/* <Route path="/" element={<SharedLayout />}> */}
             {/* <Route index element={<Home />} /> */}
-            <Route path="/contacts" element={<ContactPage />} />
+            <Route path={`${domenPath}/contacts`} element={<ContactPage />} />
 
-            <Route path="*" element={<Navigate to="/contacts" />} />
+            <Route path="*" element={<Navigate to={`${domenPath}/contacts`} />} />
             {/* </Route> */}
           </Routes>
         ) : (
           <Routes>
             {/* <Route path="/" element={<SharedLayout />}> */}
             {/* <Route index element={<Home />} /> */}
-            <Route path="/" element={<Navigate to="/login" />} />
-            <Route path="*" element={<Navigate to="/login" />} />
+            <Route path={`${domenPath}`} element={<Navigate to={`${domenPath}/login`} />} />
+            <Route path="*" element={<Navigate to={`${domenPath}/login`} />} />
 
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<RegisterForm />} />
+            <Route path={`${domenPath}/login`} element={<LoginForm />} />
+            <Route path={`${domenPath}/register`} element={<RegisterForm />} />
             {/* </Route> */}
           </Routes>
         )}
