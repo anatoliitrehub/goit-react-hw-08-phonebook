@@ -76,9 +76,9 @@ export const RegisterForm = () => {
         <label htmlFor="" className={st.labelNumber}>
           Password
           <input
-            type="text"
+            type="password"
             name="password"
-            // pattern="d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
             title="Pass must be digits and can contain spaces, dashes, parentheses and can start with +"
             className={st.number}
             value={password}

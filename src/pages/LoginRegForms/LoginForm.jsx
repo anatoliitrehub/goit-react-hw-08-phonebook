@@ -44,8 +44,8 @@ export const LoginForm = () => {
           <input
             type="email"
             name="email"
-            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="E-mail may contain only letters, apostrophe, dash and spaces. For example example@e.mail.com"
+            pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+            title="E-mail may contain only letters and @. For example example@mail.com"
             className={st.name}
             value={email}
             onChange={e => setEmail(e.target.value)}
@@ -55,7 +55,7 @@ export const LoginForm = () => {
         <label htmlFor="" className={st.labelNumber}>
           Password
           <input
-            type="text"
+            type="password"
             name="password"
             // pattern="d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Pass must be digits and can contain spaces, dashes, parentheses and can start with +"
